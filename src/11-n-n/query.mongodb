@@ -1,0 +1,20 @@
+use("store")
+
+db.products.find()
+db.stores.find()
+
+db.stores.aggregate([
+  {
+    $match: {
+      _id: ObjectId('667492630ae9209944abcb94')
+    }
+  },
+  {
+    $lookup: {
+      from: 'products',
+      localField: 'products_ids',
+      foreignField: '_id',
+      as: 'products'
+    }
+  }
+])

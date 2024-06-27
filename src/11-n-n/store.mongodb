@@ -1,0 +1,20 @@
+use("store")
+
+db.stores.insertMany([
+  {
+    name: 'Store 1',
+    products_ids: [
+      ObjectId('6667177556d06189809b7b24'),
+      ObjectId('66749055cacce1b023a40b51')
+    ]
+  },
+  {
+    name: 'Store 2',
+    products_ids: [
+      ObjectId('6667177556d06189809b7b24'),
+      ObjectId('66749055cacce1b023a40b50'),
+      ObjectId('66749055cacce1b023a40b51'),
+      ObjectId('66749055cacce1b023a40b52')
+    ]
+  }
+])

@@ -1,0 +1,38 @@
+use("store")
+
+db.orders.find({ user_id: ObjectId('666e58c00680ebc6a18f2c89') }).count()
+
+db.orders.find({ user_id: ObjectId('666e586fddaa0f3e870e2b42') })
+db.users.findOne({_id: ObjectId('666e586fddaa0f3e870e2b42')})
+
+db.orders.aggregate([
+  {
+    $match: {
+      _id: ObjectId('6670d32c0ca6d890b2fb9bd3')
+    }
+  },
+  {
+    $lookup: {
+      from: 'users',
+      localField: 'user_id',
+      foreignField: '_id',
+      as: 'user'
+    }
+  }
+])
+
+db.users.aggregate([
+  {
+    $match: {
+      _id: ObjectId('666e586fddaa0f3e870e2b42')
+    }
+  },
+  {
+    $lookup: {
+      from: 'orders',
+      localField: '_id',
+      foreignField: 'user_id',
+      as: 'orders'
+    }
+  }
+])

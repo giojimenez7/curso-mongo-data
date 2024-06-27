@@ -1,0 +1,18 @@
+use("store")
+
+db.orders.updateOne(
+  {_id: ObjectId('667b1638b47ed8f0927dcf89')},
+  {
+    $push: {
+      items: {
+        name: 'Product 2',
+        price: 45,
+        qty: 3,
+        product_id: ObjectId('66749055cacce1b023a40b50')
+      }
+    },
+    $inc: {
+      total: 45 * 3
+    }
+  }
+)
